@@ -7,6 +7,56 @@
 
 import UIKit
 
+enum RMTabbarItem : CaseIterable {
+    case characters
+    case locations
+    case episodes
+    case settings
+    
+    var title: String {
+        switch self {
+        case .characters: return "Characters"
+        case .locations: return "Locations"
+        case .episodes: return "Episodes"
+        case .settings: return "Settings"
+        }
+    }
+    
+    var icon: UIImage? {
+        switch self {
+        case .characters:
+            return UIImage(systemName: "person")
+        case .locations:
+            return UIImage(systemName: "globe")
+        case .episodes:
+            return UIImage(systemName: "tv")
+        case .settings:
+            return UIImage(systemName: "gear")
+        }
+    }
+    
+    var tab: UITabBarItem {
+        switch self {
+        case .characters:
+            return UITabBarItem(title: self.title,
+                                image: self.icon,
+                                tag: 1)
+        case .locations:
+            return UITabBarItem(title: self.title,
+                                image: self.icon,
+                                tag: 2)
+        case .episodes:
+            return UITabBarItem(title: self.title,
+                                image: self.icon,
+                                tag: 3)
+        case .settings:
+            return UITabBarItem(title: self.title,
+                                image: self.icon,
+                                tag: 4)
+        }
+    }
+}
+
 final class RMTabBarController: UITabBarController {
 
     override func viewDidLoad() {
@@ -26,21 +76,13 @@ final class RMTabBarController: UITabBarController {
         let nav3 = UINavigationController(rootViewController: episodeVC)
         let nav4 = UINavigationController(rootViewController: settingsVC)
         
-        nav1.tabBarItem = UITabBarItem(title: "Characters",
-                                       image: UIImage(systemName: "person"),
-                                       tag: 1)
+        nav1.tabBarItem = RMTabbarItem.characters.tab
         
-        nav2.tabBarItem = UITabBarItem(title: "Locations",
-                                       image: UIImage(systemName: "globe"),
-                                       tag: 2)
+        nav2.tabBarItem = RMTabbarItem.locations.tab
         
-        nav3.tabBarItem = UITabBarItem(title: "Episodes",
-                                       image: UIImage(systemName: "tv"),
-                                       tag: 3)
+        nav3.tabBarItem = RMTabbarItem.episodes.tab
         
-        nav4.tabBarItem = UITabBarItem(title: "Settings",
-                                       image: UIImage(systemName: "gear"),
-                                       tag: 4)
+        nav4.tabBarItem = RMTabbarItem.settings.tab
         
         for nav in [nav1, nav2, nav3, nav4] {
             nav.navigationBar.prefersLargeTitles = true

@@ -13,7 +13,7 @@ final class RMSettingsViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        title = "Settings"
+        title = RMTabbarItem.settings.title
         navigationItem.largeTitleDisplayMode = .automatic
     }
 
