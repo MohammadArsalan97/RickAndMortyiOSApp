@@ -16,5 +16,13 @@ final class RMCharacterViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = RMTabbarItem.characters.title
         navigationItem.largeTitleDisplayMode = .automatic
+        
+        let request = RMRequest(endpoint: .character,
+                                pathComponents: ["1"])
+        debugPrint(request.url)
+        
+        RMService.shared.execute(request, expecting: RMCharacter.self) { result in
+            
+        }
     }
 }
